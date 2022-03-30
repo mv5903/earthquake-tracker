@@ -7,6 +7,7 @@ import mapboxgl from 'mapbox-gl'
 export default function RecentEarthquakes(props) {
     const siteData = props.data
 
+
     if (siteData.length == 0) {
         return (
             <div className={styles.display}>
@@ -21,7 +22,7 @@ export default function RecentEarthquakes(props) {
             {siteData['features'].map(dataPoint => {
                 return (
                     <>
-                        <RecentEarthquakeItem data={dataPoint}/>
+                        <RecentEarthquakeItem changeLocation={props.changeLocation} data={dataPoint}/>
                     </>
                 )
             })}

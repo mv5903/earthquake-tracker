@@ -4,7 +4,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Settings from './components/Settings';
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'
+// The following is required to stop "npm build" from transpiling mapbox code.
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 mapboxgl.accessToken = "pk.eyJ1Ijoia3dpa21hdHQiLCJhIjoiY2ticmhpMjQ1MndvbjJwcW54bmk1dWFjdCJ9.nVMk6GxrstG-4QIeX1y33g"
+const moment = require('moment-timezone')
 
 export default function App() {
   const mapContainer = useRef(null);
@@ -13,7 +19,22 @@ export default function App() {
   const [lat, setLat] = useState(31);
   const [zoom, setZoom] = useState(4);
 
+
+  function setLongLat(long, lat) {
+    map.current.flyTo({
+      center: [lat, long],
+      zoom: 8
+    })
+  }
+
   const [siteData, setSiteData] = useState([])
+
+  if (!localStorage.getItem('userData')) {
+    localStorage.setItem('userData', JSON.stringify({
+      timeZone: 'GMT',
+      units: 'Metric'
+    }))
+  }
 
   useEffect(() => {
     fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson')
@@ -128,6 +149,10 @@ export default function App() {
             const tsunami =
               e.features[0].properties.tsunami === 1 ? 'Yes' : 'No';
             const title = e.features[0].properties.title.substring(e.features[0].properties.title.indexOf('-') + 2)
+            const localUser = JSON.parse(localStorage.getItem('userData'))
+            const USER = localUser
+            console.log(USER)
+            const TIMESTAMP = USER.timeZone === 'GMT (Greenwich Mean Time)' ? new Date(e.features[0].properties.time).toUTCString() : new Date(e.features[0].properties.time).toLocaleString('en-US', {timeZone: USER.timeZone}) + ' ' + moment.tz(USER.timeZone).zoneAbbr()
             // Ensure that if the map is zoomed out such that
             // multiple copies of the feature are visible, the
             // popup appears over the copy being pointed to.
@@ -138,7 +163,7 @@ export default function App() {
             new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(
-                `<h3 style="text-align:center">${title}</h3>Magnitude: ${mag}<br>Tsunami: ${tsunami}`
+                `<h3 style="text-align:center">${title}</h3>${TIMESTAMP}<br>Magnitude: ${mag}<br>Tsunami: ${tsunami}`
               )
               .addTo(map.current);
           });
@@ -152,15 +177,15 @@ export default function App() {
         });
       })
       .catch(error => console.error(error.message))
-  }, [])
+  }, [lng, lat])
 
   return (
     <>
       <div>
         <div ref={mapContainer} className="map-container" />
       </div>
-      <RecentEarthquakes data={siteData} />
-      <Settings/>
+      <RecentEarthquakes changeLocation={setLongLat} data={siteData} />
+      <Settings />
     </>
   );
 }

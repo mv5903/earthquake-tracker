@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "earthquake-kwikmatt"
+  },
+  "targets": {
+    "earthquake-kwikmatt": {
+      "hosting": {
+        "earthquakes": [
+          "earthquake-kwikmatt"
+        ]
+      }
+    }
+  }
+}
