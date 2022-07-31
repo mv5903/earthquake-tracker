@@ -38,12 +38,12 @@ export default function Settings() {
         return(
             <>
                 <div className={styles.settingsMenu}>
-                    <h3 className={styles.settingsTitle}>Settings</h3>
+                    <h3 className={styles.settingsTitle}>{"Settings"._()}</h3>
                     {
                         SETTINGS.map(setting => {
                             return (
                                 <div className={styles.select}>
-                                    <p>{setting.name}:</p>
+                                    <p>{setting.name._()}:</p>
                                     <select id={setting.settingName}>
                                         {
                                             setting.options.map(option => {
@@ -57,7 +57,7 @@ export default function Settings() {
                             )
                         })
                     }
-                    <button className={styles.closeButton} onClick={() => { setSettingsOpen(false); window.location.reload()}}>Save</button>
+                    <button className={styles.closeButton} onClick={() => { setSettingsOpen(false); window.location.reload()}}>{"Save"._()}</button>
                 </div>
                 <img alt="Setting Icon" className={styles.icon} src={require('../assets/icons8-settings-240.png')} onClick={settingsClicked}></img>
             </>

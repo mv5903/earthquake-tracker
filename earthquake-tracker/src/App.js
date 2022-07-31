@@ -5,20 +5,41 @@ import Settings from './components/Settings';
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'
 import { SETTINGS } from './assets/settings';
-// The following is required to stop "npm build" from transpiling mapbox code.
-// notice the exclamation point in the import.
+import { LANGUAGE } from './assets/localization'; 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 mapboxgl.accessToken = "pk.eyJ1Ijoia3dpa21hdHQiLCJhIjoiY2ticmhpMjQ1MndvbjJwcW54bmk1dWFjdCJ9.nVMk6GxrstG-4QIeX1y33g"
-const moment = require('moment-timezone')
+const moment = require('moment')
 
 export default function App() {
+
+  if (!localStorage.getItem('userData')) {
+    let userData = {};
+    SETTINGS.forEach(setting => userData[setting.settingName] = setting.value)
+    localStorage.setItem('userData', JSON.stringify(userData));
+  }
+  
+  // For auto localization
+  Object.defineProperty(String.prototype, "_", {
+    value: function _() {
+      const USER = JSON.parse(localStorage.getItem('userData'));
+      try {
+        return LANGUAGE[USER.language][this];
+      } catch (e) {
+        return '?';
+      }
+    },
+    writable: true,
+    configurable: true,
+  });
+
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-137);
-  const [lat, setLat] = useState(31);
-  const [zoom, setZoom] = useState(4);
+
+  const lng = -137;
+  const lat = 31;
+  const zoom = 4;
 
 
   function setLongLat(long, lat) {
@@ -29,12 +50,6 @@ export default function App() {
   }
 
   const [siteData, setSiteData] = useState([])
-
-  if (!localStorage.getItem('userData')) {
-    let userData = {};
-    SETTINGS.forEach(setting => userData[setting.settingName] = setting.value)
-    localStorage.setItem('userData', JSON.stringify(userData));
-  }
 
   useEffect(() => {
     fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson')
@@ -147,12 +162,12 @@ export default function App() {
             const coordinates = e.features[0].geometry.coordinates.slice();
             const mag = e.features[0].properties.mag;
             const tsunami =
-              e.features[0].properties.tsunami === 1 ? 'Yes' : 'No';
+              e.features[0].properties.tsunami === 1 ? 'Yes'._() : 'No'._();
             const title = e.features[0].properties.title.substring(e.features[0].properties.title.indexOf('-') + 2)
             const localUser = JSON.parse(localStorage.getItem('userData'))
             const USER = localUser
-            console.log(USER)
-            const TIMESTAMP = USER.timeZone === 'GMT (Greenwich Mean Time)' ? new Date(e.features[0].properties.time).toUTCString() : new Date(e.features[0].properties.time).toLocaleString('en-US', {timeZone: USER.timeZone}) + ' ' + moment.tz(USER.timeZone).zoneAbbr()
+            const timeFormat = USER.timeFormat === '24-Hour' ? 'HH:mm' : 'h:mm a';
+            const TIMESTAMP = moment(e.features[0].properties.time).tz(USER.timeZone).format(`${USER.dateFormat} ${timeFormat}`) + ' ' + moment.tz(USER.timeZone).zoneAbbr();
             // Ensure that if the map is zoomed out such that
             // multiple copies of the feature are visible, the
             // popup appears over the copy being pointed to.
@@ -163,7 +178,7 @@ export default function App() {
             new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(
-                `<h3 style="text-align:center">${title}</h3>${TIMESTAMP}<br>Magnitude: ${mag}<br>Tsunami: ${tsunami}`
+                `<h3 style="text-align:center">${title}</h3>${TIMESTAMP}<br>${"Magnitude"._()}: ${mag}<br>${"Tsunami"._()}: ${tsunami}`
               )
               .addTo(map.current);
           });
@@ -174,6 +189,8 @@ export default function App() {
           map.current.on('mouseleave', 'clusters', () => {
             map.current.getCanvas().style.cursor = '';
           });
+
+    
         });
       })
       .catch(error => console.error(error.message))

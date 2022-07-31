@@ -1,3 +1,8 @@
+import { LANGUAGE } from "./localization"
+
+const Languages = Object.keys(LANGUAGE);
+Languages.sort();
+
 export var SETTINGS = [
     {
         name: 'Time Zone',
@@ -452,15 +457,7 @@ export var SETTINGS = [
     {
         name: 'Preferred Language',
         value: 'English',
-        options: [
-            'English',
-            'French',
-            'German',
-            'Spanish',
-            'Mandarin',
-            'Russian',
-            'Japanese'
-        ],
+        options: Languages,
         settingName: 'language'
     },
     {
