@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "mapbox-gl": "^2.7.1",
-    "moment": "^2.29.4"
-  }
-}
