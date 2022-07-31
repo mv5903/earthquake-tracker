@@ -1,17 +1,16 @@
 import styles from './RecentEarthquakes.module.css'
 import { useState } from 'react'
-const moment = require('moment-timezone')
+const moment = require('moment')
 
 
 export default function RecentEarthquakeItem(props) {
-    const data = props.data
+    const data = props.data;
 
     // Define default options and listen for them constantly, if they don't already exist
-    const localUser = JSON.parse(localStorage.getItem('userData'))
-    var [userData, setUserData] = useState(localUser)
-    const USER = userData
-
-    const timestamp = USER.timeZone === 'GMT (Greenwich Mean Time)' ? new Date(data.properties.time).toUTCString() : new Date(data.properties.time).toLocaleString('en-US', {timeZone: USER.timeZone}) + ' ' + moment.tz(USER.timeZone).zoneAbbr()
+    const USER = JSON.parse(localStorage.getItem('userData'))
+    const timeFormat = USER.timeFormat === '24-Hour' ? 'HH:mm' : 'h:mm a';
+    const timestamp = moment(data.properties.time).tz(USER.timeZone).format('MM/DD/yyyy ' + timeFormat) + ' ' + moment.tz(USER.timeZone).zoneAbbr();
+    
     const itemClicked = (name) => {
         props.changeLocation(data.geometry.coordinates[1], data.geometry.coordinates[0])
     }

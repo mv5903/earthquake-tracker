@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Settings from './components/Settings';
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'
+import { SETTINGS } from './assets/settings';
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
 // @ts-ignore
@@ -30,10 +31,9 @@ export default function App() {
   const [siteData, setSiteData] = useState([])
 
   if (!localStorage.getItem('userData')) {
-    localStorage.setItem('userData', JSON.stringify({
-      timeZone: 'GMT',
-      units: 'Metric'
-    }))
+    let userData = {};
+    SETTINGS.forEach(setting => userData[setting.settingName] = setting.value)
+    localStorage.setItem('userData', JSON.stringify(userData));
   }
 
   useEffect(() => {

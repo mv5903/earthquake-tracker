@@ -1,9 +1,8 @@
 export var SETTINGS = [
     {
         name: 'Time Zone',
-        value: 'America/Los_Angeles',
+        value: 'Etc/GMT',
         options: [
-            "GMT (Greenwich Mean Time)",
             "Africa/Abidjan",
             "Africa/Accra",
             "Africa/Addis_Ababa",
@@ -449,5 +448,38 @@ export var SETTINGS = [
             'Imperial'
         ],
         settingName: 'units'
+    },
+    {
+        name: 'Preferred Language',
+        value: 'English',
+        options: [
+            'English',
+            'French',
+            'German',
+            'Spanish',
+            'Mandarin',
+            'Russian',
+            'Japanese'
+        ],
+        settingName: 'language'
+    },
+    {
+        name: 'Preferred Date Format',
+        value: 'MM/DD/YYYY',
+        options: [
+            'MM/DD/YYYY',
+            'DD/MM/YYYY',
+            'YYYY/MM/DD'
+        ],
+        settingName: 'dateFormat'    
+    },
+    {
+        name: 'Preferred Time Format',
+        value: '12-Hour',
+        options: [
+            '12-Hour',
+            '24-Hour'
+        ],
+        settingName: 'timeFormat'
     }
 ]
