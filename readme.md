@@ -9,4 +9,4 @@ This is my second and most likely final stable version of my global earthquake t
 ![Screenshot](/images/screenshot.png)
 
 <br><br>
-[Click for live example!](https://mattvandenberg.com/earthquakes/index.html)
+[Click for live example!](https://mattvandenberg.com/earthquakes)
