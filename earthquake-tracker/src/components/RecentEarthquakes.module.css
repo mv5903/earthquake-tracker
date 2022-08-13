@@ -66,15 +66,10 @@
 }
 
 .closeButton {
-    position: absolute;
-    bottom: 0;
-    width: 8vw;
-    left: 36vw;
-    right: 36vw;
+    text-align: center;
     font-size: 1.5em;
     border-radius: 4px;
     padding: 6px;
-    margin-bottom: 10px;
     background-color: lightgray;
     color: black;
     border: 4px solid white;
@@ -96,4 +91,13 @@
 
 .settingsTitle {
     font-size: 2em;
+}
+
+.settingsButtonDiv {
+    width: 100%;
+    position: absolute;
+    bottom: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

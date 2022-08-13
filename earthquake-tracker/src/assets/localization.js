@@ -287,6 +287,59 @@ export const LANGUAGE = {
         "Preferred Date Format": "Định dạng ngày ưu tiên",
         "Preferred Time Format": "Định dạng thời gian ưu tiên",
         "Save": "Lưu",
-    }
+    },
+    
+    // Punjabi
+    "ਪੰਜਾਬੀ": {
+        "Recent Earthquakes": "ਤਾਜ਼ਾ ਕੁਦਰੀਆਂ ਘਟਨਾਵਾਂ",
+        "No data yet, please wait..": "ਕੋਈ ਡੇਟਾ ਨਹੀਂ, ਕ੃ਪਯੇ ਪ੍ਰਤੀਕ੍਷ਾ ਕਰੋ..",
+        "of": "ਨੂੰ",
+        "Yes": "ਹਾਂ",
+        "No": "ਨਹੀਂ",
+        "Magnitude": "ਮਾਗਣਿਕਾ",
+        "Tsunami": "ਸਨਾਮਾਮ",
+        "Settings": "ਸੈਟਿੰਗ",
+        "Time Zone": "ਸਮਾਂ ਦੀ ਕ੍਷ਮਤਾ",
+        "Preferred Units": "ਪਛਿਤ ਇਕਾਈਆਂ",
+        "Preferred Language": "ਪਛਿਤ ਭਾਸ਼ਾ",
+        "Preferred Date Format": "ਪਛਿਤ ਤਾਰੀਖ ਫਾਰਮੈਟ",
+        "Preferred Time Format": "ਪਛਿਤ ਸਮਾਂ ਫਾਰਮੈਟ",
+        "Save": "ਸੰਭਾਲੋ",
+    },
 
+    // Quechua
+    "Runsimi": {
+        "Recent Earthquakes": "Qhichwaqpaq kutinakuna",
+        "No data yet, please wait..": "Manaraq kutiqa, qhichwaqpaq kutinakuna..",
+        "of": "kutinakuna",
+        "Yes": "Qhichwaq",
+        "No": "Manaraq",
+        "Magnitude": "Qhichwaqpaq kutinakuna",
+        "Tsunami": "Tsunami",
+        "Settings": "Kamachina",
+        "Time Zone": "Pachaq kutinakuna",
+        "Preferred Units": "Qhichwaqpaq kutinakuna",
+        "Preferred Language": "Qhichwaqpaq kutinakuna",
+        "Preferred Date Format": "Qhichwaqpaq kutinakuna",
+        "Preferred Time Format": "Qhichwaqpaq kutinakuna",
+        "Save": "Qhichwaqpaq kutinakuna",
+    },
+
+    // Romanian
+    "Română": {
+        "Recent Earthquakes": "Eruptii recente",
+        "No data yet, please wait..": "Nu există date, vă rugăm așteptați..",
+        "of": "din",
+        "Yes": "Da",
+        "No": "Nu",
+        "Magnitude": "Magnitudine",
+        "Tsunami": "Tsunami",
+        "Settings": "Setări",
+        "Time Zone": "Fusul orar",
+        "Preferred Units": "Unități preferate",
+        "Preferred Language": "Limbă preferată",
+        "Preferred Date Format": "Formatul datelor preferate",
+        "Preferred Time Format": "Formatul timpului preferat",
+        "Save": "Salvează",
+    }
 }

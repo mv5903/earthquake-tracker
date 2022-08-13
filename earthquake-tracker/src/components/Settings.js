@@ -4,6 +4,8 @@ import { SETTINGS } from '../assets/settings'
 
 export default function Settings() {
     const [settingsOpen, setSettingsOpen] = useState(false)
+    const [language, setLanguage] = useState(JSON.parse(localStorage.getItem('userData')).language)
+
     const settingsClicked = () => {
         setSettingsOpen(true)
     }
@@ -28,15 +30,17 @@ export default function Settings() {
                     if (selects.length > 0) {
                         let selectedOption = select.selectedOptions[0].text
                         overwriteLocalStorage(select.id, selectedOption)
+                        if (select.id == 'language') {
+                            setLanguage(selectedOption);
+                        }
                     }
                 })
             })
         }
     })
-
     if (settingsOpen) {
         return(
-            <>
+            <div id={language + '-settings'}>
                 <div className={styles.settingsMenu}>
                     <h3 className={styles.settingsTitle}>{"Settings"._()}</h3>
                     {
@@ -57,10 +61,12 @@ export default function Settings() {
                             )
                         })
                     }
-                    <button className={styles.closeButton} onClick={() => { setSettingsOpen(false); window.location.reload()}}>{"Save"._()}</button>
+                    <div className={styles.settingsButtonDiv}>
+                        <button className={styles.closeButton} onClick={() => { setSettingsOpen(false); window.location.reload()}}>{"Save"._()}</button>
+                    </div>
                 </div>
                 <img alt="Setting Icon" className={styles.icon} src={require('../assets/icons8-settings-240.png')} onClick={settingsClicked}></img>
-            </>
+            </div>
         )
     }
     return(
