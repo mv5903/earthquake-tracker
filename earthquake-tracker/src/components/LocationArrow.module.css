@@ -1,0 +1,9 @@
+.locationArrow {
+    position: absolute;
+    bottom: 3vh;
+    right: 2vh;
+    width: 3vw;
+    height: 3vw;
+    color: black;
+    cursor: pointer;
+}

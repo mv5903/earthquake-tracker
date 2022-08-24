@@ -6,6 +6,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'
 import { SETTINGS } from './assets/settings';
 import { LANGUAGE } from './assets/localization'; 
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import LocationArrow from './components/LocationArrow';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -64,6 +66,11 @@ export default function App() {
           center: [lng, lat],
           zoom: zoom
         })
+        const currentLocale = LANGUAGE[JSON.parse(localStorage.getItem('userData')).language]['locale']
+        const language = new MapboxLanguage({
+          defaultLanguage: currentLocale,
+        });
+        map.current.addControl(language);
         map.current.on('load', () => {
           // Add a new source from our GeoJSON data and
           // set the 'cluster' option to true. GL-JS will
@@ -178,7 +185,7 @@ export default function App() {
             new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(
-                `<h3 style="text-align:center">${title}</h3>${TIMESTAMP}<br>${"Magnitude"._()}: ${mag}<br>${"Tsunami"._()}: ${tsunami}`
+                `<h5 class="text-center">${title}</h5>${TIMESTAMP}<br>${"Magnitude"._()}: ${mag}<br>${"Tsunami"._()}: ${tsunami}`
               )
               .addTo(map.current);
           });
@@ -203,6 +210,7 @@ export default function App() {
       </div>
       <RecentEarthquakes changeLocation={setLongLat} data={siteData} />
       <Settings />
+      <LocationArrow changeLocation={setLongLat} />
     </>
   );
 }

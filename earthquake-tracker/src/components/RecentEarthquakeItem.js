@@ -17,6 +17,7 @@ export default function RecentEarthquakeItem(props) {
     if (USER.units !== 'Metric') {
         if (data.properties.title.includes('km')) {
             data.properties.title = data.properties.title.replaceAll('km', 'mi');
+            data.properties.title = data.properties.title.replaceAll('M ', '')
         }
     }
 
@@ -25,10 +26,18 @@ export default function RecentEarthquakeItem(props) {
         data.properties.title = data.properties.title.replaceAll("of", "of"._());
     }
 
+    // Getting rid of gap that sometimes appears next to mi and km
+    if (!data.properties.title.includes(' mi')) {
+        data.properties.title = data.properties.title.replaceAll('mi', ' mi');
+    }
+    if (!data.properties.title.includes(' km')) {
+        data.properties.title = data.properties.title.replaceAll('km', ' km');
+    }
+
     return (
         <div className={styles.item} onClick={itemClicked}>
-            <h4>{data.properties.title}</h4>
-            <p className={styles.date}>{timestamp}</p>
+            <h5>{data.properties.title}</h5>
+            <p className="text-muted">{timestamp}</p>
         </div>
     )
 }

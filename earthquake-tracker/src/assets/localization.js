@@ -1,6 +1,7 @@
 export const LANGUAGE = {
     // English
     "English": {
+        'locale': 'en',
         "Recent Earthquakes": "Recent Earthquakes",
         "No data yet, please wait..": "No data yet, please wait..",
         "of": "of",
@@ -18,6 +19,7 @@ export const LANGUAGE = {
     },
     // Spanish
     "Español": {
+        'locale': 'es',
         "Recent Earthquakes": "Sismos recientes",
         "No data yet, please wait..": "No hay datos aun, por favor espere..",
         "of": "de",
@@ -35,6 +37,7 @@ export const LANGUAGE = {
     },
     // French
     "Français": {
+        'locale': 'fr',
         "Recent Earthquakes": "Sismes récents",
         "No data yet, please wait..": "Pas de données pour l'instant, veuillez attendre..",
         "of": "de",
@@ -52,6 +55,7 @@ export const LANGUAGE = {
     },
     // German
     "Deutsch": {
+        'locale': 'de',
         "Recent Earthquakes": "Aktuelle Erdbeben",
         "No data yet, please wait..": "Noch keine Daten, bitte warten..",
         "of": "von",
@@ -69,6 +73,7 @@ export const LANGUAGE = {
     },
     // Italian
     "Italiano": {
+        'locale': 'it',
         "Recent Earthquakes": "Sismi recenti",
         "No data yet, please wait..": "Non ci sono dati ancora, attendi...",
         "of": "di",
@@ -86,6 +91,7 @@ export const LANGUAGE = {
     },
     // Japanese
     "日本語": {
+        'locale': 'ja',
         "Recent Earthquakes": "最近の地震",
         "No data yet, please wait..": "データがありません。しばらくお待ちください。",
         "of": "の",
@@ -103,6 +109,7 @@ export const LANGUAGE = {
     },
     // Chinese (Mandarin)
     "中文": {
+        'locale': 'zh-Hans',
         "Recent Earthquakes": "最近的地震",
         "No data yet, please wait..": "没有数据，请稍候。",
         "of": "的",
@@ -120,6 +127,7 @@ export const LANGUAGE = {
     },
     // Arabic
     "عربى": {
+        'locale': 'ar',
         "Recent Earthquakes": "أحدث الزلات",
         "No data yet, please wait..": "لا توجد بيانات حتى الآن، يرجى الانتظار..",
         "of": "من",
@@ -137,6 +145,7 @@ export const LANGUAGE = {
     },
     // Korean
     "한국어": {
+        'locale': 'ko',
         "Recent Earthquakes": "최근의 지진",
         "No data yet, please wait..": "아직 데이터가 없습니다. 잠시 기다려 주십시오..",
         "of": "의",
@@ -154,6 +163,7 @@ export const LANGUAGE = {
     },
     // Dutch
     "Nederlands": {
+        'locale': 'nl',
         "Recent Earthquakes": "Recente Erdbeëndingen",
         "No data yet, please wait..": "Nog geen data, wacht a.u.b..",
         "of": "van",
@@ -171,6 +181,7 @@ export const LANGUAGE = {
     },
     // Filipino
     "Pilipino": {
+        'locale': 'fil',
         "Recent Earthquakes": "Mga pamamatnig na mga sismo",
         "No data yet, please wait..": "Wala pang mga dato, mangyaring maghintay..",
         "of": "ng",
@@ -188,6 +199,7 @@ export const LANGUAGE = {
     },
     // Gujarati
     "ગુજરાતી": {
+        'locale': 'gu',
         "Recent Earthquakes": "તાજા ઘટનાઓ",
         "No data yet, please wait..": "કોઈ ડાટા નથી, કૃપા કરીને જુના કાશે..",
         "of": "એવા",
@@ -205,6 +217,7 @@ export const LANGUAGE = {
     },
     // Hebrew
     "עברית": {
+        'locale': 'he',
         "Recent Earthquakes": "ארץ הטעות האחרונים",
         "No data yet, please wait..": "אין עדיין נתונים, אנא המתן..",
         "of": "של",
@@ -222,6 +235,7 @@ export const LANGUAGE = {
     },
     // Hindi
     "हिन्दी": {
+        'locale': 'hi',
         "Recent Earthquakes": "हाल के घटनायें",
         "No data yet, please wait..": "कोई डेटा नहीं, कृपया प्रतीक्षा करें..",
         "of": "का",
@@ -239,6 +253,7 @@ export const LANGUAGE = {
     },
     // Portuguese
     "Português": {
+        'locale': 'pt',
         "Recent Earthquakes": "Sismos recentes",
         "No data yet, please wait..": "Nenhum dado ainda, por favor aguarde..",
         "of": "de",
@@ -256,6 +271,7 @@ export const LANGUAGE = {
     },
     // Russian
     "Русский": {
+        'locale': 'ru',
         "Recent Earthquakes": "Последние землетрясения",
         "No data yet, please wait..": "Нет данных, пожалуйста подождите..",
         "of": "из",
@@ -273,6 +289,7 @@ export const LANGUAGE = {
     },
     // Vietnamese
     "Tiếng Việt": {
+        'locale': 'vi',
         "Recent Earthquakes": "Sự kiện đỉnh lửa gần đây",
         "No data yet, please wait..": "Chưa có dữ liệu, vui lòng chờ..",
         "of": "của",
@@ -291,6 +308,7 @@ export const LANGUAGE = {
     
     // Punjabi
     "ਪੰਜਾਬੀ": {
+        'locale': 'pa',
         "Recent Earthquakes": "ਤਾਜ਼ਾ ਕੁਦਰੀਆਂ ਘਟਨਾਵਾਂ",
         "No data yet, please wait..": "ਕੋਈ ਡੇਟਾ ਨਹੀਂ, ਕ੃ਪਯੇ ਪ੍ਰਤੀਕ੍਷ਾ ਕਰੋ..",
         "of": "ਨੂੰ",
@@ -309,6 +327,7 @@ export const LANGUAGE = {
 
     // Quechua
     "Runsimi": {
+        'locale': 'qu',
         "Recent Earthquakes": "Qhichwaqpaq kutinakuna",
         "No data yet, please wait..": "Manaraq kutiqa, qhichwaqpaq kutinakuna..",
         "of": "kutinakuna",
@@ -327,6 +346,7 @@ export const LANGUAGE = {
 
     // Romanian
     "Română": {
+        'locale': 'ro',
         "Recent Earthquakes": "Eruptii recente",
         "No data yet, please wait..": "Nu există date, vă rugăm așteptați..",
         "of": "din",
