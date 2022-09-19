@@ -1,16 +1,14 @@
 import styles from './RecentEarthquakes.module.css'
 const moment = require('moment-timezone')
 
-export default function RecentEarthquakeItem(props) {
-    const data = props.data;
-
+export default function RecentEarthquakeItem({ data, changeLocation }) {
     // Define default options and listen for them constantly, if they don't already exist
     const USER = JSON.parse(localStorage.getItem('userData'))
     const timeFormat = USER.timeFormat === '24-Hour' ? 'HH:mm' : 'h:mm a';
     const timestamp = moment(data.properties.time).tz(USER.timeZone).format(`${USER.dateFormat} ${timeFormat}`) + ' ' + moment.tz(USER.timeZone).zoneAbbr();
-    
+
     const itemClicked = () => {
-        props.changeLocation(data.geometry.coordinates[1], data.geometry.coordinates[0], data)
+        changeLocation(data.geometry.coordinates[1], data.geometry.coordinates[0], data)
     }
 
     // Changing title to reflect user selected unit
