@@ -36,10 +36,12 @@ export default function RecentEarthquakes({ changeLocation }) {
             {data['features'].map((dataPoint, index) => {
                 if (!showMore)
                     return (
-                        <>
-                            <RecentEarthquakeItem key={index} changeLocation={changeLocation} data={dataPoint}/>
-                        </>
+                        <div  key={index}>
+                            <RecentEarthquakeItem changeLocation={changeLocation} data={dataPoint}/>
+                        </div>
                     )
+                else
+                    return null;
             })}
         </div>
     )

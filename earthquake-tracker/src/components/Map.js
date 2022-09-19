@@ -1,10 +1,10 @@
 import * as mapboxgl from 'mapbox-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
-import { getLocale, getSetting } from "../assets/Culture"; 
+import { getLocale } from "../assets/Culture"; 
 import { getEarthquakePopup } from "./Earthquake";
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
@@ -24,13 +24,10 @@ export default function Map() {
     const lat = 31;
     const zoom = 4;
 
-    const [siteData, setSiteData] = useState([]);
-
     useEffect(() => {
         fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")
             .then(response => response.json())
             .then(data => {
-                setSiteData(data);
                 organizeData(data);
                 if (map.current) return;
                 map.current = new mapboxgl.Map({
@@ -167,7 +164,7 @@ function organizeData(data) {
     });
 }
 
-export function setMapLocation(long, lat, clickedOn) {
+export function setMapLocation(lat, long, clickedOn) {
     if (!map.current) return;
     map.current.flyTo({
         center: [lat, long],

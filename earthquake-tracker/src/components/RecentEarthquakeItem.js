@@ -8,7 +8,7 @@ export default function RecentEarthquakeItem({ data, changeLocation }) {
     const timestamp = moment(data.properties.time).tz(USER.timeZone).format(`${USER.dateFormat} ${timeFormat}`) + ' ' + moment.tz(USER.timeZone).zoneAbbr();
 
     const itemClicked = () => {
-        changeLocation(data.geometry.coordinates[1], data.geometry.coordinates[0], data)
+        changeLocation(data.geometry.coordinates[0], data.geometry.coordinates[1], data)
     }
 
     // Changing title to reflect user selected unit

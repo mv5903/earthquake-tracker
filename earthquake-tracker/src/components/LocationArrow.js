@@ -2,11 +2,16 @@ import { useEffect } from 'react';
 import { FaLocationArrow } from 'react-icons/fa';
 import styles from './LocationArrow.module.css';
 
-export default function LocationArrow(props) {
+export default function LocationArrow({ changeLocation }) {
     // Default values
     let lat = -137;
     let lng = 31;
+
     useEffect(() => {
+        alterLocation();
+    });
+
+    function alterLocation() {
         // 1 : Attempt Geolocation Detection
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
@@ -30,10 +35,14 @@ export default function LocationArrow(props) {
                 console.log(e);
             }
         }
-    } , []);
+
+        // 2 : Change location
+        changeLocation(lng, lat);
+    }
+
     return (
         <div>
-            <FaLocationArrow className={styles.locationArrow} onClick={() => props.changeLocation(lng, lat)}/>
+            <FaLocationArrow className={styles.locationArrow} onClick={() => alterLocation(lng, lat)}/>
         </div>
     )
 }
