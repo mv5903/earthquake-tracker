@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        EarthquakeMap()
+        ZStack {
+            EarthquakeMap()
+                .edgesIgnoringSafeArea(.all)
+            RecentEarthquakePanel()
+        }
     }
 }
 

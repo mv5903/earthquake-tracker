@@ -9,6 +9,7 @@ export default function Settings() {
     const settingsClicked = () => {
         setSettingsOpen(true)
     }
+
     useEffect(() => {
         var selects = Array.from(document.querySelectorAll('select'))
         // If settings is actually visible or not
@@ -37,28 +38,32 @@ export default function Settings() {
                 })
             })
         }
-    })
+    });
+
     if (settingsOpen) {
-        return(
+        // Translates the options of these settings to the user selected language
+        const translateKeys = ["sortEarthquakesBy"];
+
+        return (
             <div id={language + '-settings'}>
                 <div className={styles.settingsMenu}>
                     <h3 className={styles.settingsTitle}>{"Settings"._()}</h3>
                     {
-                        SETTINGS.map(setting => {
+                        SETTINGS.map((setting, index) => {
                             return (
-                                <div className={styles.select}>
+                                <div className={styles.select} key={index}>
                                     <p>{setting.name._()}:</p>
                                     <select id={setting.settingName}>
                                         {
-                                            setting.options.map(option => {
+                                            setting.options.map((option, settingIndex) => {
                                                 return (
-                                                    <option value={option}>{option}</option>
-                                                )
+                                                    <option key={settingIndex}>{translateKeys.includes(setting.settingName) ? option._() : option}</option>
+                                                );
                                             })
                                         }
                                     </select>
                                 </div>
-                            )
+                            );
                         })
                     }
                     <div className={styles.settingsButtonDiv}>

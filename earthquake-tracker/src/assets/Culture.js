@@ -34,11 +34,11 @@ export function initApp() {
     Object.defineProperty(String.prototype, "_", {
         value: function _() {
             const USER = JSON.parse(localStorage.getItem("userData"));
-            try {
-                return LANGUAGE[USER.language][this];
-            } catch (e) {
-                return "?";
+            if (!LANGUAGE[USER.language][this]) {
+                console.error('Missing translation for "' + this + '"');
+                return this;
             }
+            return LANGUAGE[USER.language][this];
         },
         writable: true,
         configurable: true,

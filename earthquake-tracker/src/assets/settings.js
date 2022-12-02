@@ -478,5 +478,18 @@ export var SETTINGS = [
             '24-Hour'
         ],
         settingName: 'timeFormat'
+    },
+    {
+        name: 'Sort Earthquakes By',
+        value: 'Most Recent comes first',
+        options: [
+            'Most Recent comes first',
+            'Most Recent comes last',
+            'Magnitude (Highest to Lowest)',
+            'Magnitude (Lowest to Highest)',   
+            'Location (A-Z)',
+            'Location (Z-A)' 
+        ],
+        settingName: 'sortEarthquakesBy'
     }
 ]
